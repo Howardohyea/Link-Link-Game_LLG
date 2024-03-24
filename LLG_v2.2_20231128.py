@@ -22,6 +22,7 @@ Remove: 1. Additional testing notes
 import random
 import pygame
 import sys
+import time
 from pygame.locals import *
 
 #window resize logic
@@ -196,7 +197,7 @@ def checkPath_3(board:list,space_1:list,space_2:list):
     Return 2 values: Boolean True or False, with successful turn space or two fail spaces
     """
     fail_path = [] # May be removed in later versions
-    # First attemp
+    # First attempt
     temp_space = [space_2[0],space_1[1]] # Seprate one turn to two single line
     check_status = checkPath_2(board,space_1,temp_space) and board[space_2[0]][space_1[1]] == 0 # Check first line
     if check_status:
@@ -205,7 +206,7 @@ def checkPath_3(board:list,space_1:list,space_2:list):
             return True,temp_space # Return successful turn location
     fail_path.append(temp_space)
 
-    # Second attemp
+    # Second attempt
     temp_space = [space_1[0],space_2[1]]
     check_status = checkPath_2(board,space_1,temp_space) and board[space_1[0]][space_2[1]] == 0 # Check first line
     if check_status:
@@ -302,6 +303,7 @@ def algotithm(board:list,pointer_a:list,pointer_b:list):
     Call with 3 values: Game board and two spaces for checking
     Return 1 value: Boolean True or False
     """
+    
     # Reject different block
     if not blockCheck(board,pointer_a,pointer_b):
         return False
@@ -386,6 +388,7 @@ def menuGUI():
 
     while flag:
         # Initialize number of pixels to move
+        time.sleep(0.05)
         site = [0,0]
         if start:
             site = [240,400]
@@ -489,6 +492,7 @@ def gameboardGUI(size_x:int,size_y:int,numb_elements:int):
         # Initialize number of pixels to move
         #site = [0,0]
         pointer_temp = [0,0]
+        time.sleep(0.05)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
