@@ -1,4 +1,4 @@
-software_version = "2.2"
+software_version = 2.2
 """
 -------------------------
 Software version: 2.2
@@ -24,6 +24,21 @@ import pygame
 import sys
 from pygame.locals import *
 
+#window resize logic
+screen = pygame.display.set_mode((400, 400), pygame.RESIZABLE)
+pygame.display.set_caption('Resizable Window')
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+        # Handle window resize events
+        if event.type == pygame.VIDEORESIZE:
+            # Update the screen size
+            screen = pygame.display.set_mode(event.size, pygame.RESIZABLE)
+    #GAME LOGIC HERE
+pygame.quit()
 
 def newBoard(size_x:int,size_y:int):
     """
